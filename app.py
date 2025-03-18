@@ -14,8 +14,8 @@ html_criteria = {
     "Verwendung eines <h1>-Tags": r"<h1>.*?</h1>",
     "Verwendung eines <img>-Tags": r"<img\s+.*?>",
     "Verwendung eines <a>-Tags mit href": r"<a\s+href=",
-    "Verwendung einer <table>-Struktur": r"<table>.*?</table>",
-    "Verwendung eines Formulars (<form>)": r"<form>.*?</form>",
+    "Verwendung einer <p>-Tags": r"<p>.*?</p>",
+    "Verwendung einer <p>-Tags": r"<p>.*?</p>",
 }
 
 # CSS-Kriterien (Regex-Patterns für die Überprüfung)
