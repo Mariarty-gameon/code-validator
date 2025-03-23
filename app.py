@@ -12,16 +12,16 @@ def check_code_criteria(code, criteria):
 # HTML-Kriterien (Regex-Patterns für die Überprüfung)
 html_criteria = {
     "Korrekte Grundstruktur (doctype, html, head, body)": r"<!DOCTYPE html>.*?<html>.*?<head>.*?</head>.*?<body>.*?</body>.*?</html>",
-    "Verlinkung CSS-Stylesheet": r"<link\s+rel=['"]stylesheet['"]\s+href=['"].*?stylesheet.css['"]",
+    "Verlinkung CSS-Stylesheet": r"<link\s+rel=[\'\"]stylesheet[\'\"]\s+href=[\'\"].*?stylesheet.css[\'\"]",
     "Paragraph (<p>)": r"<p>.*?</p>",
     "Tab-Titel (<title>)": r"<title>.*?</title>",
     "Überschrift(en) (<h1> - <h6>)": r"<h[1-6]>.*?</h[1-6]>",
     "Bild (<img>)": r"<img\s+.*?>",
     "Link (<a href>)": r"<a\s+href=",
-    "Link öffnet neues Fenster (target=_blank)": r"<a\s+[^>]*target=['"]_blank['"]",
+    "Link öffnet neues Fenster (target=_blank)": r"<a\s+[^>]*target=[\'\"]_blank[\'\"]",
     "Bild oder Icon als anklickbarer Link": r"<a\s+[^>]*><img\s+.*?></a>",
-    "Class-Attribut verwendet": r"class=['"].*?['"]",
-    "ID-Attribut verwendet": r"id=['"].*?['"]"
+    "Class-Attribut verwendet": r"class=[\'\"].*?[\'\"]",
+    "ID-Attribut verwendet": r"id=[\'\"].*?[\'\"]"
 }
 
 # CSS-Kriterien (Regex-Patterns für die Überprüfung)
@@ -62,4 +62,3 @@ if st.button("Validieren"):
             st.write(f"✅ {criterion}" if met else f"❌ {criterion}")
     else:
         st.warning("Bitte geben Sie einen Code ein.")
-
