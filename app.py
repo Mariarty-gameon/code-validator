@@ -26,18 +26,18 @@ html_criteria = {
 
 # CSS-Kriterien (Regex-Patterns für die Überprüfung)
 css_criteria = {
-    "Schriftgröße (font-size)": r"font-size:\s*\d+px",
+    "Schriftgröße (font-size)": r"font-size:\s*\d+(px|%|em|rem);",
     "Schriftart (font-family)": r"font-family:\s*[\w\-, ]+;",
     "Farbe (color)": r"color:\s*#[0-9a-fA-F]{3,6}|color:\s*\w+;",
     "Hintergrundfarbe (background-color)": r"background-color:\s*#[0-9a-fA-F]{3,6}|background-color:\s*\w+;",
-    "Breite (width)": r"width:\s*\d+(px|%);",
-    "Höhe (height)": r"height:\s*\d+(px|%);",
+    "Breite (width)": r"width:\s*\d+(px|%|em|rem);",
+    "Höhe (height)": r"height:\s*\d+(px|%|em|rem);",
     "Text-Ausrichtung (text-align)": r"text-align:\s*(left|right|center|justify);",
-    "Abgerundete Ecken (border-radius)": r"border-radius:\s*\d+px;",
+    "Abgerundete Ecken (border-radius)": r"border-radius:\s*\d+(px|%|em|rem);",
     "Box-Schatten (box-shadow)": r"box-shadow:\s*[^;]+;",
     "Verlauf (linear-gradient)": r"linear-gradient\(",
-    "Padding": r"padding:\s*\d+(px|%|em|rem);",
-    "Margin": r"margin:\s*\d+(px|%|em|rem);",
+    "Padding": r"padding(-[a-z]+)?:\s*\d+(px|%|em|rem);",
+    "Margin": r"margin(-[a-z]+)?:\s*\d+(px|%|em|rem);",
     "Flexbox (display: flex)": r"display:\s*flex;",
     "Ausrichtung mit justify-content": r"justify-content:\s*(flex-start|flex-end|center|space-between|space-around|space-evenly);",
     "Ausrichtung mit align-items": r"align-items:\s*(stretch|center|flex-start|flex-end|baseline);"
@@ -62,3 +62,4 @@ if st.button("Validieren"):
             st.write(f"✅ {criterion}" if met else f"❌ {criterion}")
     else:
         st.warning("Bitte geben Sie einen Code ein.")
+
