@@ -5,7 +5,7 @@ def check_code_criteria(code, criteria):
     """Prüft den Code anhand einer Checkliste von Kriterien."""
     results = {}
     for criterion, regex in criteria.items():
-        match = re.search(regex, code)
+        match = re.search(regex, code, re.DOTALL)
         results[criterion] = bool(match)
     return results
 
@@ -13,13 +13,13 @@ def check_code_criteria(code, criteria):
 html_criteria = {
     "Korrekte Grundstruktur (doctype, html, head, body)": r"<!DOCTYPE html>.*?<html>.*?<head>.*?</head>.*?<body>.*?</body>.*?</html>",
     "Verlinkung CSS-Stylesheet": r"<link\s+rel=[\'\"]stylesheet[\'\"]\s+href=[\'\"].*?stylesheet.css[\'\"]",
-    "Paragraph (<p>)": r"<p>.*?</p>",
+    "Paragraph (<p>)": r"<p[^>]*>.*?</p>",
     "Tab-Titel (<title>)": r"<title>.*?</title>",
     "Überschrift(en) (<h1> - <h6>)": r"<h[1-6]>.*?</h[1-6]>",
     "Bild (<img>)": r"<img\s+.*?>",
     "Link (<a href>)": r"<a\s+href=",
     "Link öffnet neues Fenster (target=_blank)": r"<a\s+[^>]*target=[\'\"]_blank[\'\"]",
-    "Bild oder Icon als anklickbarer Link": r"<a\s+[^>]*><img\s+.*?></a>",
+    "Bild oder Icon als anklickbarer Link": r"<a\s+[^>]*>(\s*<img\s+.*?>\s*)+</a>",
     "Class-Attribut verwendet": r"class=[\'\"].*?[\'\"]",
     "ID-Attribut verwendet": r"id=[\'\"].*?[\'\"]"
 }
