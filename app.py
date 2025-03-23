@@ -11,20 +11,36 @@ def check_code_criteria(code, criteria):
 
 # HTML-Kriterien (Regex-Patterns für die Überprüfung)
 html_criteria = {
-    "Verwendung eines <h1>-Tags": r"<h1>.*?</h1>",
-    "Verwendung eines <img>-Tags": r"<img\s+.*?>",
-    "Verwendung eines <a>-Tags mit href": r"<a\s+href=",
-    "Verwendung einer <p>-Tags": r"<p>.*?</p>",
-    "Verwendung einer <p>-Tags": r"<p>.*?</p>",
+    "Korrekte Grundstruktur (doctype, html, head, body)": r"<!DOCTYPE html>.*?<html>.*?<head>.*?</head>.*?<body>.*?</body>.*?</html>",
+    "Verlinkung CSS-Stylesheet": r"<link\s+rel=['"]stylesheet['"]\s+href=['"].*?stylesheet.css['"]",
+    "Paragraph (<p>)": r"<p>.*?</p>",
+    "Tab-Titel (<title>)": r"<title>.*?</title>",
+    "Überschrift(en) (<h1> - <h6>)": r"<h[1-6]>.*?</h[1-6]>",
+    "Bild (<img>)": r"<img\s+.*?>",
+    "Link (<a href>)": r"<a\s+href=",
+    "Link öffnet neues Fenster (target=_blank)": r"<a\s+[^>]*target=['"]_blank['"]",
+    "Bild oder Icon als anklickbarer Link": r"<a\s+[^>]*><img\s+.*?></a>",
+    "Class-Attribut verwendet": r"class=['"].*?['"]",
+    "ID-Attribut verwendet": r"id=['"].*?['"]"
 }
 
 # CSS-Kriterien (Regex-Patterns für die Überprüfung)
 css_criteria = {
-    "Verwendung einer Klasse (.class)": r"\.\w+\s*{",
-    "Verwendung einer ID (#id)": r"#\w+\s*{",
-    "Festlegen einer Farbe (color:)": r"color:\s*#[0-9a-fA-F]{3,6}|color:\s*\w+;",
-    "Verwendung eines Flexbox-Layouts": r"display:\s*flex;",
-    "Verwendung einer Media Query": r"@media\s*\(.*?\)\s*{",
+    "Schriftgröße (font-size)": r"font-size:\s*\d+px",
+    "Schriftart (font-family)": r"font-family:\s*[\w\-, ]+;",
+    "Farbe (color)": r"color:\s*#[0-9a-fA-F]{3,6}|color:\s*\w+;",
+    "Hintergrundfarbe (background-color)": r"background-color:\s*#[0-9a-fA-F]{3,6}|background-color:\s*\w+;",
+    "Breite (width)": r"width:\s*\d+(px|%);",
+    "Höhe (height)": r"height:\s*\d+(px|%);",
+    "Text-Ausrichtung (text-align)": r"text-align:\s*(left|right|center|justify);",
+    "Abgerundete Ecken (border-radius)": r"border-radius:\s*\d+px;",
+    "Box-Schatten (box-shadow)": r"box-shadow:\s*[^;]+;",
+    "Verlauf (linear-gradient)": r"linear-gradient\(",
+    "Padding": r"padding:\s*\d+(px|%|em|rem);",
+    "Margin": r"margin:\s*\d+(px|%|em|rem);",
+    "Flexbox (display: flex)": r"display:\s*flex;",
+    "Ausrichtung mit justify-content": r"justify-content:\s*(flex-start|flex-end|center|space-between|space-around|space-evenly);",
+    "Ausrichtung mit align-items": r"align-items:\s*(stretch|center|flex-start|flex-end|baseline);"
 }
 
 # Streamlit Web-App
@@ -46,3 +62,4 @@ if st.button("Validieren"):
             st.write(f"✅ {criterion}" if met else f"❌ {criterion}")
     else:
         st.warning("Bitte geben Sie einen Code ein.")
+
